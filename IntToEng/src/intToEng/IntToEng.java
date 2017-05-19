@@ -18,10 +18,29 @@ public class IntToEng {
 	static final String[] TEEN = {"ten", "eleven", "twelve", "thirteen", "fourteen",
 			"fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
 	
-	//static final Stinrg[] TENS_PLACE = {"", "", "twenty", "thirty" };
+	static final String[] TENS_PLACE = {"zero", "zero", "twenty", "thirty", "fourty",
+			"fifty", "sixty", "seventy", "eighty", "ninety"};
 	
-	static String translateEng(int n) {		
-		return ONES_PLACE[n];		
+	static String translateEng(int n) {
+		StringBuilder sb = new StringBuilder();
+		
+		int onePlace = n % 10;
+		int tenPlace = n / 10;
+		
+		if(tenPlace > 0) {
+			if(tenPlace == 1) {
+				sb.append(TEEN[onePlace]);
+			} else {
+				int i = 2;
+				while(i != tenPlace) {
+					i++;
+				}
+				sb.append(TENS_PLACE[i] + " ");
+			}
+		}
+		
+		sb.append(ONES_PLACE[onePlace]);
+		
+		return new String(sb);		
 	}
-
 }
