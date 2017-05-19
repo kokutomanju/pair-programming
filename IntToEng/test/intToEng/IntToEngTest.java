@@ -15,4 +15,27 @@ public class IntToEngTest {
 		assertThat(actual, is(expected));
 	}
 
+	@Test
+	public void translateEngメソッドで15を英訳できる() {
+		IntToEng ite = new IntToEng();
+		String expected = "fifteen";
+		String actual = ite.translateEng(15);
+		assertThat(actual, is(expected));
+	}
+	
+	@Test
+	public void translateEngメソッドで25を英訳できる() {
+		IntToEng ite = new IntToEng();
+		String expected = "twenty five";
+		String actual = ite.translateEng(25);
+		assertThat(actual, is(expected));
+	}
+	
+	@Test
+	public void translateEngメソッドで45を英訳できる() {
+		IntToEng ite = new IntToEng();
+		String expected = "fourty five";
+		String actual = ite.translateEng(45);
+		assertThat(actual, is(expected));
+	}
 }
