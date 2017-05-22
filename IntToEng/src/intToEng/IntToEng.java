@@ -24,27 +24,33 @@ public class IntToEng {
 	static String translateEng(int n) {
 		StringBuilder sb = new StringBuilder();
 		
-		int tenThouPlace = n / 10000;
+		int hundThouPlace = n / 100000;
+		int tenThouPlace = (n%100000) / 10000;
 		int thouPlace = (n%10000) / 1000;
 		int hundPlace = (n%1000) / 100;
 		int tenPlace = (n%100) / 10;
 		int onePlace = n % 10;
 		
-		if(tenThouPlace > 0) {
-			translateTenPlace(sb, tenThouPlace, thouPlace);
-			sb.append(" thousand ");
+		if(n == 0) {
+			sb.append(ONES_PLACE[n]);
 		} else {
-			if(thouPlace > 0) sb.append(ONES_PLACE[thouPlace] + " thousand ");
+			if(tenThouPlace > 0) {
+				translateTenPlace(sb, hundThouPlace, tenThouPlace, thouPlace);
+				sb.append(" thousand ");
+			} else {
+				if(thouPlace > 0) sb.append(ONES_PLACE[thouPlace] + " thousand ");
+			}
+			
+			translateTenPlace(sb, hundPlace, tenPlace, onePlace);
+			if(n == 0) sb.append(ONES_PLACE[n]);
 		}
-		
-		if(hundPlace > 0) sb.append(ONES_PLACE[hundPlace] + " hundred ");
-		
-		translateTenPlace(sb, tenPlace, onePlace);
 		
 		return new String(sb);		
 	}
 
-	private static void translateTenPlace(StringBuilder sb, int tenPlace, int onePlace) {
+	private static void translateTenPlace(StringBuilder sb, int hundPlace,   int tenPlace, int onePlace) {
+		if(hundPlace > 0) sb.append(ONES_PLACE[hundPlace] + " hundred ");
+		
 		if(tenPlace > 1) {
 			int i = 2;
 			while(i != tenPlace) {
@@ -53,7 +59,14 @@ public class IntToEng {
 			sb.append(TENS_PLACE[i] + " ");
 		}
 		
-		if(tenPlace != 1) sb.append(ONES_PLACE[onePlace]);	
-		else sb.append(TEEN[onePlace]);
+		if(tenPlace != 0) {
+			if(tenPlace != 1) sb.append(ONES_PLACE[onePlace]);	
+			else sb.append(TEEN[onePlace]);
+		}
+		
+		else {
+			sb.append(ONES_PLACE[onePlace]);
+		}
+		
 	}
 }
