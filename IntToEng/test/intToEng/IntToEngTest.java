@@ -74,8 +74,48 @@ public class IntToEngTest {
 	@Test
 	public void translateEngメソッドで1000を英訳できる() {
 		IntToEng ite = new IntToEng();
-		String expected = "one thousand ";
+		String expected = "one thousand";
 		String actual = ite.translateEng(1000);
+		assertThat(actual, is(expected));
+	}
+	
+	@Test
+	public void translateEngメソッドで100を英訳できる() {
+		IntToEng ite = new IntToEng();
+		String expected = "one hundred";
+		String actual = ite.translateEng(100);
+		assertThat(actual, is(expected));
+	}
+	
+	@Test
+	public void translateEngメソッドで0を英訳できる() {
+		IntToEng ite = new IntToEng();
+		String expected = "zero";
+		String actual = ite.translateEng(0);
+		assertThat(actual, is(expected));
+	}
+	
+	@Test
+	public void translateEngメソッドで10000を英訳できる() {
+		IntToEng ite = new IntToEng();
+		String expected = "ten thousand";
+		String actual = ite.translateEng(10000);
+		assertThat(actual, is(expected));
+	}
+	
+	@Test
+	public void translateEngメソッドで100000を英訳できる() {
+		IntToEng ite = new IntToEng();
+		String expected = "one hundred thousand";
+		String actual = ite.translateEng(100000);
+		assertThat(actual, is(expected));
+	}
+	
+	@Test
+	public void translateEngメソッドで9999を英訳できる() {
+		IntToEng ite = new IntToEng();
+		String expected = "nine thousand nine hundred ninety nine";
+		String actual = ite.translateEng(9999);
 		assertThat(actual, is(expected));
 	}
 }
