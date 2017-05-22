@@ -54,4 +54,12 @@ public class IntToEngTest {
 		String actual = ite.translateEng(1124);
 		assertThat(actual, is(expected));
 	}
+	
+	@Test
+	public void translateEngメソッドで21124を英訳できる() {
+		IntToEng ite = new IntToEng();
+		String expected = "twenty one thousand one hundred twenty four";
+		String actual = ite.translateEng(21124);
+		assertThat(actual, is(expected));
+	}
 }
