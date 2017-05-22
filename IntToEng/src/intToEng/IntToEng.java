@@ -24,22 +24,25 @@ public class IntToEng {
 	static String translateEng(int n) {
 		StringBuilder sb = new StringBuilder();
 		
+		int thouPlace = n / 1000;
+		int hundPlace = (n%1000) / 100;
+		int tenPlace = (n%100) / 10;
 		int onePlace = n % 10;
-		int tenPlace = n / 10;
 		
-		if(tenPlace > 0) {
-			if(tenPlace == 1) {
-				sb.append(TEEN[onePlace]);
-			} else {
-				int i = 2;
-				while(i != tenPlace) {
-					i++;
-				}
-				sb.append(TENS_PLACE[i] + " ");
+		if(thouPlace > 0) sb.append(ONES_PLACE[thouPlace] + " thousand ");
+		
+		if(hundPlace > 0) sb.append(ONES_PLACE[hundPlace] + " hundred ");
+		
+		if(tenPlace > 1) {
+			int i = 2;
+			while(i != tenPlace) {
+				i++;
 			}
+			sb.append(TENS_PLACE[i] + " ");
 		}
 		
-		sb.append(ONES_PLACE[onePlace]);
+		if(tenPlace != 1) sb.append(ONES_PLACE[onePlace]);	
+		else sb.append(TEEN[onePlace]);
 		
 		return new String(sb);		
 	}
